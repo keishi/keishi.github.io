@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face {
+        font-family: rob;
+        src: url(https://roettsch.es/RobotoFlex-VariableFont_GRAD,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght.ttf);
+      }
+
+      body {
+        font-family: rob;
+        font-size: 12px;
+      }
+
+      @keyframes weightanim {
+        0% {
+          font-variation-settings: "wght" 400;
+        }
+        100% {
+          font-variation-settings: "wght" 900;
+        }
+      }
+
+      .anim-story {
+        animation: weightanim 0.5s infinite alternate ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="column-count: 6" id="anims"></div>
+  </body>
+  <script>
+    el = document.createElement("div");
+    el.classList.add("anim-story");
+    increments = 350;
+    for (i = 0; i < increments; i++) {
+      el_insert = el.cloneNode();
+      el_insert.innerText = "animate in the membrane";
+      stretch = 25 + (75 * i) / increments;
+      el_insert.style.fontStretch = stretch + "%";
+      anims.appendChild(el_insert);
+    }
+    setTimeout(() => {
+      Array.from(document.querySelectorAll(".anim-story")).forEach(el => el.remove());
+      gc();
+    }, 10000);
+  </script>
+</html>
